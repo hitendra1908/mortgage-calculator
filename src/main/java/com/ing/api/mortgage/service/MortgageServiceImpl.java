@@ -9,12 +9,14 @@ import com.ing.api.mortgage.exception.mortgage.MortgageExceedsHomeValueException
 import com.ing.api.mortgage.exception.mortgage.MortgageExceedsIncomeLimitException;
 import com.ing.api.mortgage.repository.MortgageRateRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MortgageServiceImpl implements MortgageService {
@@ -50,6 +52,8 @@ public class MortgageServiceImpl implements MortgageService {
 
         MortgageRate rate = mortgageRateRepository.findById(request.getMaturityPeriod())
                 .orElseThrow(() -> new InvalidMaturityPeriodException(request.getMaturityPeriod()));
+
+        log.debug("Finding monthly cost for the loan value of {} ", request.getLoanValue());
 
         BigDecimal monthlyCost = calculateMonthlyPayment( request.getLoanValue(),
                 rate.getInterestRate(),

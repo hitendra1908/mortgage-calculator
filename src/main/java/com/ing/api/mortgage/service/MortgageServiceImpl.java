@@ -1,12 +1,12 @@
 package com.ing.api.mortgage.service;
 
-import com.ing.api.mortgage.model.MortgageRate;
 import com.ing.api.mortgage.dto.MortgageCheckRequest;
 import com.ing.api.mortgage.dto.MortgageCheckResponse;
 import com.ing.api.mortgage.dto.MortgageRateDto;
 import com.ing.api.mortgage.exception.InvalidMaturityPeriodException;
 import com.ing.api.mortgage.exception.mortgage.MortgageExceedsHomeValueException;
 import com.ing.api.mortgage.exception.mortgage.MortgageExceedsIncomeLimitException;
+import com.ing.api.mortgage.model.MortgageRate;
 import com.ing.api.mortgage.repository.MortgageRateRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +62,6 @@ public class MortgageServiceImpl implements MortgageService {
         return new MortgageCheckResponse(true, monthlyCost);
     }
 
-
     /**
      * Calculates the monthly mortgage payment.
      *
@@ -72,10 +71,6 @@ public class MortgageServiceImpl implements MortgageService {
      * @return Monthly payment as BigDecimal
      */
     private BigDecimal calculateMonthlyPayment(BigDecimal principal, BigDecimal mortgageRate, int years) {
-        if (mortgageRate.compareTo(BigDecimal.ZERO) == 0) {
-            // No interest case
-            return principal.divide(BigDecimal.valueOf(years * 12L), 2, RoundingMode.HALF_UP);
-        }
 
         BigDecimal monthlyRate = mortgageRate.divide(BigDecimal.valueOf(100 * 12), 10, RoundingMode.HALF_UP);
         int totalPayments = years * 12;

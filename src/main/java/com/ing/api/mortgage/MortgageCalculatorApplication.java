@@ -27,10 +27,10 @@ public class MortgageCalculatorApplication {
 			Instant now = Instant.now();
 			mortgageRateRepository.saveAll(List.of(
 					new MortgageRate(5, new BigDecimal("3.25"), now),
-					new MortgageRate(10, new BigDecimal("3.75"), now),
+					new MortgageRate(10, new BigDecimal("5.00"), now),
 					new MortgageRate(15, new BigDecimal("4.10"), now),
-					new MortgageRate(20, new BigDecimal("4.50"), now),
-					new MortgageRate(30, new BigDecimal("5.00"), now)
+					new MortgageRate(20, new BigDecimal("3.50"), now),
+					new MortgageRate(30, new BigDecimal("3.00"), now)
 			));
 		};
 	}

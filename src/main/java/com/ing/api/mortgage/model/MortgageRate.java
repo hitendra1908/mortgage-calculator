@@ -23,9 +23,7 @@ public class MortgageRate {
     @Id
     private int maturityPeriod;
 
-    @NotBlank
     private BigDecimal interestRate;
 
-    @NotBlank
     private Instant lastUpdate;
 }

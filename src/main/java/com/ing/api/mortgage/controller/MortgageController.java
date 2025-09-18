@@ -24,6 +24,10 @@ public class MortgageController {
     private final MortgageServiceImpl mortgageServiceImpl;
 
     @Operation(summary = "Get current interest rates", description = "Returns a list of available mortgage interest rates")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved list"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @GetMapping("/interest-rates")
     public List<MortgageRateDto> getRates() {
         return mortgageServiceImpl.getAllMortgageRates();
@@ -32,7 +36,8 @@ public class MortgageController {
     @Operation(summary = "Check mortgage feasibility", description = "Calculates if a mortgage is feasible and returns monthly cost")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Mortgage check result"),
-            @ApiResponse(responseCode = "400", description = "Invalid input data")
+            @ApiResponse(responseCode = "400", description = "Invalid input data"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping("/mortgage-check")
     public ResponseEntity<MortgageCheckResponse> checkMortgage(

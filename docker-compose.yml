@@ -1,0 +1,9 @@
+services:
+  products-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: mortgagedb
+      POSTGRES_USER: inguser
+      POSTGRES_PASSWORD: pass@123
+    ports:
+      - "5432:5432"

@@ -39,6 +39,7 @@ public class MortgageServiceImpl implements MortgageService {
 
     @Override
     public MortgageCheckResponse checkMortgage(final MortgageCheckRequest request) {
+
         if (request.getLoanValue().compareTo(request.getIncome().multiply(new BigDecimal("4"))) > 0) {
             throw new MortgageExceedsIncomeLimitException(request.getLoanValue(), request.getIncome());
         }

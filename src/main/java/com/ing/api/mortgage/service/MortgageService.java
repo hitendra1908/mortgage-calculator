@@ -7,6 +7,6 @@ import com.ing.api.mortgage.dto.MortgageRateDto;
 import java.util.List;
 
 public interface MortgageService {
-    public List<MortgageRateDto> getAllMortgageRates();
-    public MortgageCheckResponse checkMortgage(MortgageCheckRequest request);
+    List<MortgageRateDto> getAllMortgageRates();
+    MortgageCheckResponse checkMortgage(final MortgageCheckRequest request);
 }
